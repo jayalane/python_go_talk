@@ -14,8 +14,6 @@ chlane@paypal.com
 
 - syslog proxy - JSON recursive editing
 
-- Example 2 - metrics gatherer
-
 * Syslog Proxy - JSON filering
 
 - List editing
@@ -97,4 +95,46 @@ But, Go runs with no observable problems @ 100% total CPU.
 * Connection Pool as Goroutine
 
 .code -numbers -edit conn_pool_7.go
+
+* Websocket Loops - Port from Python
+
+Gevent code had read loop and write loop and each handled its bit of the protocol
+
+Synchronized List appends and IO handled sync
+
+Go port had two goroutines each operating on the socket and also manipulating the protocol state
+
+Close or syscall on closed FD could happen anywhere.
+
+Added more and more mutexes and then found some protocol deadlock (I'm
+waiting for read far end will never send till I send more).
+
+* Websocket Loops - Good - Close Connection
+
+.code -numbers -edit websocket_3.go
+
+* Websocket Loops - Good - Read Connection, put into channel for loop
+
+.code -numbers -edit websocket_2.go
+
+* Websocket Loops - Good - Loop handle API calls, writes, reads
+
+.code -numbers -edit websocket_1.go
+
+
+* Websocket Loops - Good - Loop handle API calls, writes, reads 2
+
+.code -numbers -edit websocket_1a.go
+
+* Testing - Go overboard
+
+.code -numbers -edit test.go
+
+* Testing - Go overboard 2
+
+.code -numbers -edit test2.go
+
+* Testing - Functions as variables
+
+.code -numbers -edit testb.go
 

@@ -22,6 +22,8 @@ http://github.com/jayalane/python_go_talk.git
 
 - data races are trivial to find
 
+- no standard interface for logging (fights our plan to have a non-framework library)
+
 * Better go with channels/goroutines instead of mutexes
 
 - Connection pooling - from explicit state to CS 101 code
@@ -30,7 +32,7 @@ http://github.com/jayalane/python_go_talk.git
 
 * Syslog Proxy - Filtering based on strings
 
-- there's junk that we don't want to log
+There's junk that we don't want to log:
 
 - monitoring URLs
 
@@ -50,7 +52,7 @@ http://github.com/jayalane/python_go_talk.git
 
 .code -numbers -edit filter2.go
 
-* Syslog Proxy - JSON helper
+* Syslog Proxy - JSON whitelist helper
 
 - infosec for white-list only
 
@@ -60,15 +62,15 @@ http://github.com/jayalane/python_go_talk.git
 
 - in Go, don't need all the struct tagging.  A lot of code just moves stuff around
 
-* Syslog Proxy - JSON helper (note the maybe sleep)
+* Syslog Proxy - JSON whitelist (note the maybe sleep)
 
 .code -numbers -edit json.py
 
-* Syslog Proxy - JSON helper
+* Syslog Proxy - JSON whitelist
 
 .code -numbers -edit json.go
 
-* Syslog Proxy - JSON helper
+* Syslog Proxy - JSON whitelist
 
 Wrapper for API - no default params
 
@@ -103,7 +105,7 @@ But, Go runs with no observable problems @ 100% total CPU.
 
 * Better go with channels/goroutines instead of mutexes
 
-- Connection pooling - from explicit state to CS 101 code
+- Connection pooling - from explicit state with indicator variables, lists, mutexes to CS 101 code "make a connection and send data and close it" 
 
 - Websocket protocol handling - one main loop over select
 * From Mutexes to Channels

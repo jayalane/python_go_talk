@@ -1,6 +1,5 @@
 GoLang is Easy and Fun like Python
-But use channels and not mutexes
-
+But fast; just use channels and not mutexes
 
 Chris Lane
 Computer Programmer, PayPal
@@ -15,9 +14,31 @@ http://github.com/jayalane/python_go_talk.git
 
 - syslog proxy - JSON recursive editing
 
-* Syslog Proxy - JSON filering
+* Surprises
 
-- List editing
+- non-atomic ints
+
+- non-atomic maps
+
+- data races are trivial to find
+
+* Better go with channels/goroutines instead of mutexes
+
+- Connection pooling - from explicit state to CS 101 code
+
+- Websocket protocol handling - one main loop over select
+
+* Syslog Proxy - Filtering based on strings
+
+- there's junk that we don't want to log
+
+- monitoring URLs
+
+- different monitoring URLs
+
+- URLs no one understands
+
+* Python List filtering
 
 .code -numbers -edit filter.py
 
@@ -29,11 +50,19 @@ http://github.com/jayalane/python_go_talk.git
 
 .code -numbers -edit filter2.go
 
+* Syslog Proxy - JSON helper
+
+- infosec for white-list only
+
+- people put passwords in URLs, even now
+
+- fun recursive json function, like a warm up in Python
+
+- in Go, don't need all the struct tagging.  A lot of code just moves stuff around
 
 * Syslog Proxy - JSON helper (note the maybe sleep)
 
 .code -numbers -edit json.py
-
 
 * Syslog Proxy - JSON helper
 
@@ -41,9 +70,10 @@ http://github.com/jayalane/python_go_talk.git
 
 * Syslog Proxy - JSON helper
 
+Wrapper for API - no default params
+
 .code -numbers -edit json2.go
 
-Wrapper for API - no default params
 
 * Results
 
@@ -63,6 +93,19 @@ But, Go runs with no observable problems @ 100% total CPU.
 
 [[https://github.com/PayPal/support]]  - 30KLOC code, 8KLOC test
 
+* Surprises
+
+- non-atomic ints
+
+- non-atomic maps
+
+- data races are trivial to find
+
+* Better go with channels/goroutines instead of mutexes
+
+- Connection pooling - from explicit state to CS 101 code
+
+- Websocket protocol handling - one main loop over select
 * From Mutexes to Channels
 
 - Instance one - connection pools for outbound connections
@@ -139,3 +182,12 @@ waiting for read far end will never send till I send more).
 
 .code -numbers -edit testb.go
 
+* In sum
+
+- I can use my whole hardware allocation
+
+- It just stays up
+
+- It's fast
+
+- Instead of constantly tuning hotspots as volume grows, I can do math projects or go to meetings.

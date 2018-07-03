@@ -24,11 +24,15 @@ http://github.com/jayalane/python_go_talk.git
 
 - no standard interface for logging (fights our plan to have a non-framework library)
 
+- no more tuning (Python was retuned each time grew 25%; moved to PyPy; less logging; super tuned listen handler)
+
 * Better go with channels/goroutines instead of mutexes
 
 - Connection pooling - from explicit state to CS 101 code
 
 - Websocket protocol handling - one main loop over select
+
+
 
 * Syslog Proxy - Filtering based on strings
 
@@ -79,7 +83,7 @@ Wrapper for API - no default params
 
 * Results
 
-In 7 months, Only 12 dropped TCP connections (due to memory leak)
+In 7 months, only few dozen dropped TCP connections (due to memory leak causing server exit)
 
 2073 LOC GoLang (2588 LOC Python)
 
@@ -95,13 +99,18 @@ But, Go runs with no observable problems @ 100% total CPU.
 
 [[https://github.com/PayPal/support]]  - 30KLOC code, 8KLOC test
 
-* Surprises
+* Bad Surprises
 
 - non-atomic ints
 
 - non-atomic maps
 
-- data races are trivial to find
+- Really nice deadlock detector
+
+github.com/sasha-s/go-deadlock
+
+- If you need to use it, redo as goroutines/channels
+
 
 * Better go with channels/goroutines instead of mutexes
 
@@ -173,6 +182,8 @@ waiting for read far end will never send till I send more).
 .code -numbers -edit websocket_1a.go
 
 * Testing - Go overboard
+
+Emacs compile command:  go fmt ; golint ; go build ; go test -race -test.v
 
 .code -numbers -edit test.go
 

@@ -6,7 +6,7 @@
 					f.session[0] = 48
 				}
 				f.unlockSession()
-				fmt.Println("Messing with sessionn", f.clientID)
+				fmt.Println("Messing with session", f.clientID)
 			}
 		}
 		dones = append(dones, doneChan)
